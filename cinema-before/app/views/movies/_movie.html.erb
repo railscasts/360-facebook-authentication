@@ -1,0 +1,11 @@
+<div class="movie">
+  <%= image_tag movie.image %>
+  <h2><%= movie.name %></h2>
+  <p><%= movie.description %></p>
+  <% if current_page? movie %>
+    <p><%= link_to "Back to Movies", movies_path %></p>
+  <% else %>
+    <p><%= link_to "Read Reviews", movie %></p>
+  <% end %>
+  <div class="clear"></div>
+</div>

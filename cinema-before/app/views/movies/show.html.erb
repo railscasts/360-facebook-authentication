@@ -1,0 +1,34 @@
+<div id="movie">
+  <%= render @movie %>
+</div>
+
+<div id="reviews">
+  <h2><%= pluralize @movie.reviews.size, "Review" %></h2>
+
+  <% @movie.reviews.each do |review| %>
+    <div class="review">
+      <div class="content"><%= review.content %></div>
+      <em>
+        &mdash;
+        <%= review.name %> gave it
+        <strong><%= pluralize review.rating, "star" %></strong>
+      </em>
+    </div>
+  <% end %>
+
+  <h3>Write a review</h3>
+  <%= form_for [@movie, Review.new] do |f| %>
+    <div class="field">
+      <%= f.label :rating %>
+      <%= f.select :rating, 1..5 %>
+    </div>
+    <div class="field">
+      <%= f.label :name, "Your name" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.text_area :content, rows: 5, cols: 40 %>
+    </div>
+    <div class="actions"><%= f.submit %></div>
+  <% end %>
+</div>
